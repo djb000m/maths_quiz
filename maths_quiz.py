@@ -6,13 +6,13 @@
 
 ## TODO: Change colours depending on results (20%, 40%, 60%, 80%, 100%)
 ## TODO: Change colours of check and cross marks (green & red)
+## TODO: Add a simple prompt menu system instead of defaults for setting up quiz
+## TODO: Error Handling!!!!!!(!)
+## TODO: Persistent Users and High Scores (generate score based on accuracy and speed)
 ## TODO: Add a multiplication option
 ## TODO: Add a division option
 ## TODO: Add a choice for types of quiz (e.g. mixed, adding, subtracting etc.)
 ## TODO: add a times tables mode (user picks the number)
-## TODO: Add a simple prompt menu system instead of defaults for setting up quiz
-## TODO: Error Handling!!!!!!(!)
-## TODO: Persistent Users and High Scores (generate score based on accuracy and speed)
 ## TODO: Get the Emojis working!
 
 
