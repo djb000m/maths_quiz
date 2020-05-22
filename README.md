@@ -28,14 +28,18 @@ A simple python script to randomly generate a maths quiz for children.
 4. Run the script:
 
 ```
-  Usage: download-new-face [OPTIONS]
+  Usage: maths_quiz [OPTIONS]
 
-  A tool to download a number of generated images from
-  https://thispersondoesnotexist.com
+    A simple Maths Quiz python application for children
 
-Options:
-  -n, --number INTEGER      The number of images you wish to save, default is 10
-  --help                    Show this message and exit.
+  Options:
+    -q, --questions INTEGER  The number of question you want in your quiz,
+                            default is 10
+
+    -d, --difficulty TEXT    The difficulty level for the quiz; Easy, Medium or
+                            Hard. Default is Easy
+
+    --help                   Show this message and exit.
 
 ```
 
