@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        maths_quiz=maths_quiz:cli
+    
