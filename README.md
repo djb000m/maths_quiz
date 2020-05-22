@@ -45,4 +45,4 @@ A simple python script to randomly generate a maths quiz for children.
 
 > #### Notes:
 >
-> _If **--number** is not specified then 10 questions will be generated._
+> _If **--questions** is not specified then 10 questions will be generated._

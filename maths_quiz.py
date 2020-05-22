@@ -40,6 +40,10 @@ from question import Question
 def cli(questions, difficulty):
     """
     A simple Maths Quiz python application for children
+
+    Args:
+        questions (Int): The number of questions desired in the quiz
+        difficulty (String): The difficulty level of the quiz questions, defined in d_value below
     """
 
     # clear the screen
@@ -48,11 +52,14 @@ def cli(questions, difficulty):
     # define the difficulty level values - these are used as maximum values for addition & subtraction
     d_value = {"easy": 10, "medium": 30, "hard": 100}
 
+    if difficulty not in d_value:
+        difficulty = "easy"
+
     maths_quiz(
         questions,
         {"easy": easy_difficulty, "medium": medium_difficulty, "hard": hard_difficulty}[
-            difficulty
-        ](d_value[difficulty]),
+            difficulty.lower()
+        ](d_value[difficulty.lower()]),
     )
 
 
@@ -86,11 +93,11 @@ def maths_quiz(num_q, d_value):
         try:
             if int(answer) == quiz[q].question_answer:
                 q_correct += 1
-                quiz_results[question] = answer + "   ✓"
+                quiz_results[question] = answer + "   ✓".rjust(6)
             else:
-                quiz_results[question] = answer + "   ✗"
+                quiz_results[question] = answer + "   ✗".rjust(6)
         except ValueError:
-            quiz_results[question] = emoji.emojize(":zany face:") + "   ✗"
+            quiz_results[question] = emoji.emojize(":zany face:") + "   ✗".rjust(6)
 
     # snapshot of time after last question
     t1 = time.time()
@@ -105,7 +112,7 @@ def maths_quiz(num_q, d_value):
 
     # print results
     for q, a in quiz_results.items():
-        print(q.ljust(15) + str(a).rjust(6))
+        print(q.ljust(15) + str(a).rjust(10))
 
     # for looks
     print("\n")
