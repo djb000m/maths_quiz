@@ -4,7 +4,9 @@
 ## A simple maths quiz for young children. Randomly generates a number of simple maths sums
 ## and checks the answers.
 
-## TODO: Change colours depending on results (20%, 40%, 60%, 80%, 100%)
+## TODO: scoring calculation to compare results
+## TODO: Change colours depending on score (20%, 40%, 60%, 80%, 100%)
+## TODO: Show correct answers for incorrect questions
 ## TODO: Change colours of check and cross marks (green & red)
 ## TODO: Add a simple prompt menu system instead of defaults for setting up quiz
 ## TODO: Error Handling!!!!!!(!)
@@ -20,6 +22,7 @@ import click
 import time
 import random
 import emoji
+import math
 from py_expression_eval import Parser
 from question import Question
 
@@ -104,12 +107,13 @@ def maths_quiz(num_q, d_value):
 
     # calculate total elapsed time
     total_time = t1 - t0
+    score = generate_score(total_time, q_correct, d_value)
 
     click.clear()
 
     # print results summary with time (two decimal places)
     print(f"You got {q_correct} out of {num_q} right in {total_time:.2f} seconds\n")
-
+    print(f"You scored {score}")
     # print results
     for q, a in quiz_results.items():
         print(q.ljust(15) + str(a).rjust(10))
@@ -197,6 +201,30 @@ def type_of_sum():
     sums = {0: "+", 1: "-", 3: "*", 4: "/"}
 
     return sums.get(random.randint(0, 1))
+
+
+def generate_score(time, result, d_value):
+    """
+    Generates a score based on the correct answers and the time taken weighted by difficulty
+
+    Args:
+        time (Float): The time taken in ms
+        result (Int): number of correct answers
+        d_value (Int): integer value representing difficulty of quiz
+
+    Returns:
+        Float: Weighted score value
+    """
+
+    time_score_power = 0.99
+    time_score_modifier = 2
+    result_score_power = 1.015
+    result_score_modifier = 1.1
+
+    time_score = math.pow(time_score_power, time) * time_score_modifier
+    result_score = math.pow(result_score_power, result) * result_score_modifier
+    d_value = math.log(d_value) / 10
+    return ((time_score + result_score) * d_value) * 100
 
 
 def create_question(d_value):
